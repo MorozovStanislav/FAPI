@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  basicapp:
+    build:
+      context: SystemMain
+      args:
+        URL: "http://nextapp"
+    volumes:
+      - './SystemMain:/app'
+    ports:
+      - 5000:80
+    networks:
+      - network1 
+  nextapp:
+    build:
+      context: SystemDependent
+    volumes:
+      - './SystemDependent:/app'
+    networks:
+      - network1 
+networks:
+  network1:
